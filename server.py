@@ -3,6 +3,7 @@ from flask_cors import CORS
 from pythainlp.tokenize import word_tokenize, sent_tokenize
 from pythainlp.tag import pos_tag
 import re
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -475,4 +476,5 @@ def rearrange():
     return jsonify({"result": transformed_text})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
